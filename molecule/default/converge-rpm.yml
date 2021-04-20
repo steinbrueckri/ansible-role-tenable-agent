@@ -3,8 +3,8 @@
   hosts: all
   become: true
   vars:
-    nessus_agent_file_checksum: "md5:bc62a7e1f5833da45d48b72f4ff8bda1"
-    nessus_agent_download_url: "https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/12564/download?i_agree_to_tenable_license_agreement=true" # NessusAgent-8.2.3-es7.x86_64.rpm
+    nessus_agent_file_checksum: "md5:001c3059bcefb9858c9e004d7c8b1c51"
+    nessus_agent_download_url: "https://f001.backblazeb2.com/file/steinbrueckri-public-share/NessusAgent-8.2.4-es7.x86_64.rpm"
     nessus_agent_rules:
       default: accept
       plugin_reject:
