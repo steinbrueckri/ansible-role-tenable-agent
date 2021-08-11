@@ -19,7 +19,7 @@ nessus_agent_version: "7.0.3"
 # The Agent download file checksum (md5)
 nessus_agent_file_checksum: "md5:ebcfd859fecdfsadf95bc9b35c056bed57"
 # The download URL for the Agent
-nessus_agent_download_url: package_url[ansible_distribution + ansible_distribution_major_version]
+nessus_agent_download_url: "{{ package_url[ansible_distribution + ansible_distribution_major_version] }}"
 # The temporary working dir
 nessus_agent_temp_dir: "/tmp"
 # Destination Agent host url
