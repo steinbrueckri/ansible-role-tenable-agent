@@ -25,6 +25,7 @@ filename_patterns = {
    'RedHat7':  'NessusAgent.*es7.x86_64.rpm',
    'CentOS7':  'NessusAgent.*es7.x86_64.rpm',
    'RedHat8':  'NessusAgent.*es8.x86_64.rpm',
+   'CentOS8':  'NessusAgent.*es8.x86_64.rpm',
    'SLES11':   'NessusAgent.*suse11.x86_64.rpm',
    'SLES12':   'NessusAgent.*suse12.x86_64.rpm',
    'SLES15':   'NessusAgent.*suse15.x86_64.rpm',
