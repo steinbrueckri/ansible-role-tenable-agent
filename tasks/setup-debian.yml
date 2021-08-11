@@ -17,7 +17,7 @@
       get_url:
         url: "{{ nessus_agent_download_url }}"
         dest: "{{ nessus_agent_temp_dir }}/NessusAgent.deb"
-        checksum: "{{ nessus_agent_file_checksum }}"
+        # checksum: "{{ nessus_agent_file_checksum }}"
 
     - name: Perform Agent installation
       apt:
