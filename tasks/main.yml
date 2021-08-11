@@ -1,5 +1,7 @@
 ---
-- include_vars: vars/package_url.yaml
+- name: Include Package URL's
+  include_vars:
+    file: vars/package_url.yaml
 
 # Install agent
 - include_tasks: "setup-{{ ansible_os_family | lower }}.yml"
