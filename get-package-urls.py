@@ -6,8 +6,6 @@
 # Output is in YAML format and may be directly imported into Ansible, e.g.:
 #
 #   $ get-package-urls.py >vars/package_url.yaml
-#
-# TODO: Fetch checksums
 
 import bs4
 import http.client
