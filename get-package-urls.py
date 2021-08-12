@@ -11,12 +11,13 @@
 
 import bs4
 import http.client
+import json
 import re
 import sys
 
-DOWNLOAD_HOST='www.tenable.com'
-DOWNLOAD_URL='https://' + DOWNLOAD_HOST + '/downloads/api/v1/public/pages/nessus-agents/downloads/'
-INDEX_URL='https://' + DOWNLOAD_HOST + '/downloads/nessus-agents?loginAttempted=true'
+DOWNLOAD_HOST = 'www.tenable.com'
+DOWNLOAD_URL  = 'https://' + DOWNLOAD_HOST + '/downloads/api/v1/public/pages/nessus-agents/downloads/'
+INDEX_URL     = 'https://' + DOWNLOAD_HOST + '/downloads/nessus-agents?loginAttempted=true'
 
 filename_patterns = {
    'Debian9':  'NessusAgent.*debian6_amd64.deb',
@@ -40,26 +41,45 @@ conn = http.client.HTTPSConnection(DOWNLOAD_HOST)
 conn.request('GET', INDEX_URL)
 resp = conn.getresponse()
 
+if resp.status != 200:
+    print('Error {} retrieving index page: {}'.format(resp.status, resp.reason))
+    sys.exit(1)
+
 soup = bs4.BeautifulSoup(resp.read(), 'html.parser')
+
+script = soup.find('script', id='__NEXT_DATA__')
+if script is None:
+    print('Error: could not find <script> containing the data')
+    sys.exit(1)
+
+data = json.loads(script.string)
+downloads = data['props']['pageProps']['page']['downloads']
+
+packages = {}
+
+for os, pattern in filename_patterns.items():
+    for dl in downloads:
+        dl_id       = dl['id']
+        dl_filename = dl['file']
+        dl_checksum = dl['meta_data']['md5']
+
+        if re.search(pattern, dl_filename):
+            dl_url = DOWNLOAD_URL + str(dl_id) + '/download?i_agree_to_tenable_license_agreement=true'
+            packages[os] = {
+                'url':      dl_url,
+                'checksum': dl_checksum
+            }
+            break
+    else:
+        print('Warning: could not find package for ' + os, file=sys.stderr)
 
 print('---')
 print('package_url:')
+for os, pkg in packages.items():
+    print('  {}: {}'.format(os, pkg['url']))
 
-# We loop multiple times through the page for each OS so we can give a warning
-# if there is no match for an OS.
-
-for os, pattern in filename_patterns.items():
-    for link in soup.find_all('li', 'download-list-group-item'):
-        filename_tag = link.find('span', 'file-name')
-        filename = filename_tag.string
-
-        if re.search(pattern, filename):
-            size_tag = link.find('span', id=re.compile('size-[0-9]+'))
-            download_id = size_tag['id'][5:]
-            download_url = DOWNLOAD_URL + download_id + '/download?i_agree_to_tenable_license_agreement=true'
-            print('  {}: {}'.format(os, download_url))
-            break
-
-    else:
-        print('Warning: could not find package for ' + os, file=sys.stderr)
+print()
+print('package_checksum:')
+for os, pkg in packages.items():
+    print('  {}: md5:{}'.format(os, pkg['checksum']))
 
