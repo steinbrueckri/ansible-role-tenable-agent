@@ -3,8 +3,6 @@
   hosts: all
   become: true
   vars:
-    nessus_agent_file_checksum: "md5:e8585548a76d03b64ea8e7c2303ba3b9"
-    nessus_agent_download_url: "https://f001.backblazeb2.com/file/steinbrueckri-public-share/NessusAgent-8.2.4-ubuntu1110_amd64.deb"
     nessus_agent_rules:
       default: accept
       plugin_reject:

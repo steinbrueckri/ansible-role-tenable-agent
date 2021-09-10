@@ -14,12 +14,15 @@ Ansible role for installing and configuring Nessus Agent
 | `nessus_agent_download_url` | Getting the download URL can be a bit tricky, just go to [https://www.tenable.com/downloads/nessus-agents](https://www.tenable.com/downloads/nessus-agents) and copy the URL, like in the example below. You need also to download the file and calculate the md5sum. *NOTE:* The Link is nt |
 | `nessus_agent_package` | can be either a repository package, path to a file, or a URL (default: `NessusAgent`) |
 
-*NOTE:* The Tenable download URLs are not static and they will change so it makes sense to upload the package to some save spot.
-You can also use my Backblaze B2 bucket that I'm use in the molecule tests, for example ([`molecule/default/converge-apt.yml`](molecule/default/converge-apt.yml)).
+*NOTE:* The Tenable download URLs are not static and they will change. To automatically generate a new list, run 
+
+```
+$ get-package-urls.py >vars/package_url.yaml
+```
 
 ## Dependencies
 
-None.
+None for the Ansible role.  To run get-package-urls.py, install the Python ```bs4``` package.
 
 ## Example Playbook
 
