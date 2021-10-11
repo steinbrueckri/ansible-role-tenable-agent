@@ -1,2 +1,14 @@
 ---
-- include_tasks: setup-redhat.yml
+- name: Download Nessus Agent
+  get_url:
+    url: "{{ nessus_agent_download_url }}"
+    dest: "{{ nessus_agent_temp_dir }}/NessusAgent.rpm"
+    checksum: "{{ nessus_agent_file_checksum }}"
+
+- name: Perform Agent installation
+  zypper:
+    name: "{{ nessus_agent_temp_dir }}/NessusAgent.rpm"
+    state: present
+    disable_gpg_check: true
+
+
