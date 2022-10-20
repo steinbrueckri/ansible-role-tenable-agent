@@ -18,8 +18,9 @@ DOWNLOAD_URL  = 'https://' + DOWNLOAD_HOST + '/downloads/api/v1/public/pages/nes
 INDEX_URL     = 'https://' + DOWNLOAD_HOST + '/downloads/nessus-agents?loginAttempted=true'
 
 filename_patterns = {
-   'Debian9':  'NessusAgent.*debian6_amd64.deb',
-   'Debian10': 'NessusAgent.*debian6_amd64.deb',
+   'Debian9':  'NessusAgent.*debian9_amd64.deb',
+   'Debian10': 'NessusAgent.*debian9_amd64.deb',
+   'Debian11': 'NessusAgent.*debian9_amd64.deb',
    'RedHat6':  'NessusAgent.*es6.x86_64.rpm',
    'RedHat7':  'NessusAgent.*es7.x86_64.rpm',
    'CentOS7':  'NessusAgent.*es7.x86_64.rpm',
@@ -32,6 +33,7 @@ filename_patterns = {
    'Ubuntu16': 'NessusAgent.*ubuntu1110_amd64.deb',
    'Ubuntu18': 'NessusAgent.*ubuntu1110_amd64.deb',
    'Ubuntu20': 'NessusAgent.*ubuntu1110_amd64.deb',
+   'Ubuntu22': 'NessusAgent.*ubuntu1110_amd64.deb',   
 }
 
 print('Downloading index page', file=sys.stderr)
