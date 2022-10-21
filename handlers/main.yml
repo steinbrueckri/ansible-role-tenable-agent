@@ -1,6 +1,8 @@
 ---
 
-- name: restart {{ nessus_agent_service_name }}
-  service: name={{ nessus_agent_service_name }} state=restarted
-  become: yes
+- name: "Restart {{ nessus_agent_service_name }}"
+  ansible.builtin.service:
+    name: "{{ nessus_agent_service_name }}"
+    state: restarted
+  become: true
   when: nessus_manage

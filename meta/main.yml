@@ -6,7 +6,7 @@ galaxy_info:
   license: Apache
   description: Ansible role to install Nessus agent (Tenable agent).
 
-  min_ansible_version: 2.5
+  min_ansible_version: "2.5"
   platforms:
     - name: Ubuntu
       versions:

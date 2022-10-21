@@ -1,14 +1,15 @@
 ---
 - name: Include Package URL's
-  include_vars:
+  ansible.builtin.include_vars:
     file: vars/package_url.yaml
 
 # Install agent
-- include_tasks: "setup-{{ ansible_os_family | lower }}.yml"
+- name: Include setup task for {{ ansible_os_family }}
+  ansible.builtin.include_tasks: "setup-{{ ansible_os_family | lower }}.yml"
 
 # configured nessusd.rules file
 - name: Create nessusd.rules file
-  template:
+  ansible.builtin.template:
     src: nessusd.rules.j2
     dest: "{{ nessus_install_dir }}/etc/nessus/nessusd.rules"
     mode: 0644
@@ -16,23 +17,23 @@
 
 # Check agent and start service
 - name: Check for Nessus installation
-  stat:
+  ansible.builtin.stat:
     path: "{{ nessus_install_dir }}"
   register: stat_result
 
 - name: Check Nessus Agent
-  command: "{{ nessus_agent_path }} agent status"
-  become: yes
+  ansible.builtin.command: "{{ nessus_agent_path }} agent status"
+  become: true
   changed_when: false
-  ignore_errors: yes
+  ignore_errors: true
   register: check_result
 
 - name: Make sure a service is running
-  systemd:
+  ansible.builtin.systemd:
     state: started
     name: "{{ nessus_agent_service_name }}"
 
 - name: Link Nessus Agent to Nessus Manager
-  command: "{{ nessus_agent_path }} agent link --host={{ nessus_agent_host }} --port={{ nessus_agent_port }} --key={{ nessus_agent_key }} --groups={{ nessus_agent_group }}"
-  become: yes
+  ansible.builtin.command: "{{ nessus_agent_path }} agent link --host={{ nessus_agent_host }} --port={{ nessus_agent_port }} --key={{ nessus_agent_key }} --groups={{ nessus_agent_group }}"
+  become: true
   when: check_result.stdout is search('Not linked to') and nessus_agent_key | length > 0
