@@ -1,0 +1,45 @@
+---
+name: update-package-url
+
+"on":
+  workflow_dispatch:
+  schedule:
+    # Run at 07:00 on Mondays
+    # * is a special character in YAML so you have to quote this string
+    - cron: "0 7 * * 1"
+
+jobs:
+  update-package-url:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⏬Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: 🚀 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+          cache: "pipenv"
+
+      - name: Install OS dependencies
+        run: sudo apt-get install -y libcurl4-openssl-dev
+
+      - name: ⏬ Install pipenv and dependencies
+        run: |
+          python -m pip install --upgrade pipenv wheel
+          pipenv install
+
+      - name: 🔼 Update package_url.yaml
+        run: pipenv run ./get-package-urls.py > vars/package_url.yaml
+
+      - name: 🔨 Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          labels: automation
+          branch: update-package-url
+          delete-branch: true
+          commit-message: "chore(deploy): Update package url list"
+          title: "chore(deploy): Update package url list"
+          body: "automatic package url update"
