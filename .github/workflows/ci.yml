@@ -48,16 +48,22 @@ jobs:
         with:
           path: "ansible-role-tenable-agent"
 
-      - name: Setup Python
+      - name: 🚀 Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.x"
+          python-version: "3.10"
+          cache: "pipenv"
 
-      - name: Install test dependencies.
-        run: pip3 install yamllint ansible-lint ansible molecule[docker] docker
+      - name: Install OS dependencies
+        run: sudo apt-get install -y libcurl4-openssl-dev
+
+      - name: ⏬ Install pipenv and dependencies
+        run: |
+          python -m pip install --upgrade pipenv wheel
+          pipenv install
 
       - name: Run Molecule tests.
-        run: molecule test
+        run: pipenv run molecule test
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
