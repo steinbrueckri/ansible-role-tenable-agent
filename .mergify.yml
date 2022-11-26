@@ -1,0 +1,25 @@
+pull_request_rules:
+  - name: Automatic merge on approval
+    conditions:
+      - "#approved-reviews-by>=1"
+    actions:
+      merge:
+        method: merge
+  - name: automatic merge of bot 🤖 (Update package url)
+    conditions:
+      - base=main
+      - title~=.*Update package url list.*
+      - files=vars/package_url.yaml
+      - "#files=1"
+    actions:
+      merge:
+        method: merge
+  - name: automatic merge of bot 🤖 (low priority)
+    conditions:
+      - author=dependabot[bot]
+      - base=main
+      - check-success~=^Molecule/
+    actions:
+      queue:
+        method: merge
+        priority: low
