@@ -19,11 +19,11 @@ jobs:
       - name: 🚀 Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: "3.10.10"
           cache: "pipenv"
 
       - name: Install OS dependencies
-        run: sudo apt-get install -y libcurl4-openssl-dev
+        run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev
 
       - name: ⏬ Install pipenv and dependencies
         run: |
