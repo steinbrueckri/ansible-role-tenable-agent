@@ -1,15 +1,15 @@
 ---
 package_url:
   Debian9: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/17967/download?i_agree_to_tenable_license_agreement=true
-  Debian10: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/17961/download?i_agree_to_tenable_license_agreement=true
-  Debian11: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/17961/download?i_agree_to_tenable_license_agreement=true
-  RedHat6: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/17922/download?i_agree_to_tenable_license_agreement=true
-  RedHat7: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/17923/download?i_agree_to_tenable_license_agreement=true
-  CentOS7: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/17923/download?i_agree_to_tenable_license_agreement=true
-  RedHat8: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/17925/download?i_agree_to_tenable_license_agreement=true
-  CentOS8: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/17925/download?i_agree_to_tenable_license_agreement=true
-  SLES12: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/17928/download?i_agree_to_tenable_license_agreement=true
-  SLES15: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/17929/download?i_agree_to_tenable_license_agreement=true
+  Debian10: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/18065/download?i_agree_to_tenable_license_agreement=true
+  Debian11: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/18065/download?i_agree_to_tenable_license_agreement=true
+  RedHat6: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/18067/download?i_agree_to_tenable_license_agreement=true
+  RedHat7: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/18068/download?i_agree_to_tenable_license_agreement=true
+  CentOS7: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/18068/download?i_agree_to_tenable_license_agreement=true
+  RedHat8: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/18070/download?i_agree_to_tenable_license_agreement=true
+  CentOS8: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/18070/download?i_agree_to_tenable_license_agreement=true
+  SLES12: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/18073/download?i_agree_to_tenable_license_agreement=true
+  SLES15: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/18074/download?i_agree_to_tenable_license_agreement=true
   Ubuntu14: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/17306/download?i_agree_to_tenable_license_agreement=true
   Ubuntu16: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/17306/download?i_agree_to_tenable_license_agreement=true
   Ubuntu18: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/17306/download?i_agree_to_tenable_license_agreement=true
@@ -18,15 +18,15 @@ package_url:
 
 package_checksum:
   Debian9: md5:49f1c8777e542147a175abd85b26a7a8
-  Debian10: md5:8a43f56211481bf72e8a5f5d0c448d5a
-  Debian11: md5:8a43f56211481bf72e8a5f5d0c448d5a
-  RedHat6: md5:77571bebade0d3ef79713f1ca410479a
-  RedHat7: md5:6e09b8fc205421e2eeedbea7ce2e2a43
-  CentOS7: md5:6e09b8fc205421e2eeedbea7ce2e2a43
-  RedHat8: md5:657dbaa6911d5dfe63eaffcfca509da4
-  CentOS8: md5:657dbaa6911d5dfe63eaffcfca509da4
-  SLES12: md5:bb7ac91867019ebaf940a27e1fdd75ee
-  SLES15: md5:626c7f63ebf1a06810b96ff26d9bbbd6
+  Debian10: md5:80393f2743b7c201841ac8545afc666c
+  Debian11: md5:80393f2743b7c201841ac8545afc666c
+  RedHat6: md5:1839e0c5a677861c94c7b31acc1c08a8
+  RedHat7: md5:b1cd17dddb36bf2d92fd0137f6f7273f
+  CentOS7: md5:b1cd17dddb36bf2d92fd0137f6f7273f
+  RedHat8: md5:9f6f96f26ce0d49c10f4b4140d3de8cf
+  CentOS8: md5:9f6f96f26ce0d49c10f4b4140d3de8cf
+  SLES12: md5:4b8bb74244341976f8f5352c9b5d71cd
+  SLES15: md5:49dc3213897752d1cec71bf15f3c200f
   Ubuntu14: md5:e63805251c7b61d0ac3d56b5cf463ca4
   Ubuntu16: md5:e63805251c7b61d0ac3d56b5cf463ca4
   Ubuntu18: md5:e63805251c7b61d0ac3d56b5cf463ca4
