@@ -11,7 +11,6 @@ pull_request_rules:
       - base=main
       - title~=.*Update package url list.*
       - files=vars/package_url.yaml
-      - "#files=1"
     actions:
       merge:
         method: merge
@@ -23,4 +22,3 @@ pull_request_rules:
     actions:
       queue:
         method: merge
-        priority: low
