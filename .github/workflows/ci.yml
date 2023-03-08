@@ -31,11 +31,9 @@ jobs:
         include:
           - distro: centos8
             playbook: converge-rpm.yml
-          - distro: centos7
-            playbook: converge-rpm.yml
           - distro: ubuntu2004
             playbook: converge-apt.yml
-          - distro: ubuntu1804
+          - distro: ubuntu2204
             playbook: converge-apt.yml
           - distro: debian10
             playbook: converge-apt.yml
