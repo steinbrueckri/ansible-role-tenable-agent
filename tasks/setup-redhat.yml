@@ -1,5 +1,6 @@
 ---
 - name: "Get Nessus Agent from repository"
+  when: nessus_agent_install_method != "url"
   block:
     - name: Install Nessus Agent from repo
       ansible.builtin.package:
@@ -11,19 +12,19 @@
       ansible.builtin.package:
         rpm: "{{ nessus_agent_package }}"
       when: "'.rpm' in nessus_agent_package"
-  when: nessus_agent_install_method != "url"
 
 - name: "Get Nessus Agent from URL"
+  when: nessus_agent_install_method == "url"
   block:
     - name: Download Nessus Agent
       ansible.builtin.get_url:
         url: "{{ nessus_agent_download_url }}"
         dest: "{{ nessus_agent_temp_dir }}/NessusAgent.rpm"
         checksum: "{{ nessus_agent_file_checksum }}"
+        mode: "0644"
 
     - name: Perform Agent installation
       ansible.builtin.yum:
         name: "{{ nessus_agent_temp_dir }}/NessusAgent.rpm"
         state: present
         disable_gpg_check: yes
-  when: nessus_agent_install_method == "url"

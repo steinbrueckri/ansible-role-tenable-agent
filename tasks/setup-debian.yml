@@ -1,5 +1,6 @@
 ---
 - name: "Get Nessus Agent from repository"
+  when: nessus_agent_install_method != "url"
   block:
     - name: Install Nessus Agent from repo
       ansible.builtin.package:
@@ -12,17 +13,17 @@
       ansible.builtin.apt:
         deb: "{{ nessus_agent_package }}"
       when: "'.deb' in nessus_agent_package"
-  when: nessus_agent_install_method != "url"
 
 - name: "Get Nessus Agent from URL"
+  when: nessus_agent_install_method == "url"
   block:
     - name: Download Nessus Agent
       ansible.builtin.get_url:
         url: "{{ nessus_agent_download_url }}"
         dest: "{{ nessus_agent_temp_dir }}/NessusAgent.deb"
         checksum: "{{ nessus_agent_file_checksum }}"
+        mode: "0644"
 
     - name: Perform Agent installation
       ansible.builtin.apt:
         deb: "{{ nessus_agent_temp_dir }}/NessusAgent.deb"
-  when: nessus_agent_install_method == "url"
