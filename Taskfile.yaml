@@ -1,0 +1,30 @@
+---
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  python_version: "3.11"
+
+tasks:
+  default:
+    deps:
+      - install-dependencies
+      - setup-pipenv
+      - install-projects-dependencies
+  install-dependencies:
+    cmds:
+      - pip3 install --upgrade pipenv
+      - pip3 install --upgrade virtualenv
+  setup-pipenv:
+    run: once
+    env:
+      PIPENV_VENV_IN_PROJECT: 1
+    cmds:
+      - pipenv --python "{{.python_version}}"
+  install-projects-dependencies:
+    cmds:
+      - pipenv install
+  run-test:
+    cmds:
+      - pipenv run molecule test
