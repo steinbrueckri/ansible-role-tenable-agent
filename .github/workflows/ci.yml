@@ -39,7 +39,7 @@ jobs:
             playbook: converge-apt.yml
           - distro: debian10
             playbook: converge-apt.yml
-          - distro: debian9
+          - distro: debian11
             playbook: converge-apt.yml
 
     steps:
