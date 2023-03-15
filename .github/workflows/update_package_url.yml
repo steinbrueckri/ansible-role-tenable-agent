@@ -6,7 +6,7 @@ name: update-package-url
   schedule:
     # Run at 07:00 on Mondays
     # * is a special character in YAML so you have to quote this string
-    - cron: "0 7 * * 1"
+    - cron: "0 7 * * *"
 
 jobs:
   update-package-url:
