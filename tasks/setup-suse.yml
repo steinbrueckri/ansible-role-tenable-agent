@@ -1,3 +1,0 @@
----
-- name: "Include RedHat"
-  ansible.builtin.include_tasks: setup-redhat.yml

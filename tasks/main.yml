@@ -4,8 +4,8 @@
     file: vars/package_url.yaml
 
 # Install agent
-- name: Include setup task for {{ ansible_os_family }}
-  ansible.builtin.include_tasks: "setup-{{ ansible_os_family | lower }}.yml"
+- name: Include setup
+  ansible.builtin.include_tasks: "setup.yml"
 
 # configured nessusd.rules file
 - name: Create nessusd.rules file

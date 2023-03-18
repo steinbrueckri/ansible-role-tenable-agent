@@ -11,6 +11,8 @@ ansible-lint = "*"
 ansible = "*"
 molecule = {extras = ["docker"], version = "*"}
 docker = "*"
+molecule-hetznercloud = "*"
+hcloud = "*"
 
 [dev-packages]
 

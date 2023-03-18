@@ -1,3 +1,0 @@
----
-- name: "Include Ubuntu"
-  ansible.builtin.include_tasks: setup-debian.yml

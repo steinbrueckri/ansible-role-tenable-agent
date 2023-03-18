@@ -2,24 +2,15 @@
 dependency:
   name: galaxy
 driver:
-  name: docker
+  name: hetznercloud
+platforms:
+  - name: "ansible-role-tenable-agent-instance-${USER:-noname}-${MOLECULE_DISTRO:-debian-11}"
+    server_type: cx11
+    image: ${MOLECULE_DISTRO:-debian-11}
+provisioner:
+  name: ansible
 lint: |
   pipenv run yamllint .
   # See https://github.com/ansible-community/ansible-lint/issues/1329
   # Exclude molecule/default/ because of this issue
   pipenv run ansible-lint --exclude=molecule/default/
-
-platforms:
-  - name: instance
-    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos7}-ansible:latest"
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:rw
-    privileged: true
-    pre_build_image: true
-    command: ${MOLECULE_DOCKER_COMMAND:-"/sbin/init"}
-    capabilities:
-      - SYS_ADMIN
-provisioner:
-  name: ansible
-  playbooks:
-    converge: ${MOLECULE_PLAYBOOK:-converge-rpm.yml}
