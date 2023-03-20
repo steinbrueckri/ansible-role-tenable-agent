@@ -1,10 +1,4 @@
 ---
-# This workflow requires a GALAXY_API_KEY secret present in the GitHub
-# repository or organization.
-#
-# See: https://github.com/marketplace/actions/publish-ansible-role-to-galaxy
-# See: https://github.com/ansible/galaxy/issues/46
-
 name: Release
 "on":
   push:
@@ -20,7 +14,7 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the codebase.
+      - name: 🔽 Checkout
         uses: actions/checkout@v3.3.0
         with:
           path: "ansible-role-tenable-agent"
@@ -28,10 +22,10 @@ jobs:
       - name: 🚀 Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: "3.11"
           cache: "pipenv"
 
-      - name: Install OS dependencies
+      - name: ⏬ Install OS dependencies
         run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev
 
       - name: ⏬ Install pipenv and dependencies

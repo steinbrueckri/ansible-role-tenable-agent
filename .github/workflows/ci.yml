@@ -56,7 +56,7 @@ jobs:
           - distro: debian-11
 
     steps:
-      - name: Check out the codebase.
+      - name: 🔽 Checkout
         uses: actions/checkout@v3.3.0
         with:
           path: "ansible-role-tenable-agent"
