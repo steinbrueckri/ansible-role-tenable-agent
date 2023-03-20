@@ -16,8 +16,8 @@ Ansible role for installing and configuring Nessus Agent
 
 _NOTE:_ The Tenable download URLs are not static and they will change. To automatically generate a new list, run
 
-```
-$ get-package-urls.py >vars/package_url.yaml
+```sh
+get-package-urls.py >vars/package_url.yaml
 ```
 
 ## Dependencies

@@ -13,6 +13,8 @@ molecule = {extras = ["docker"], version = "*"}
 docker = "*"
 molecule-hetznercloud = "*"
 hcloud = "*"
+flake8 = "*"
+pymarkdownlnt = "*"
 
 [dev-packages]
 

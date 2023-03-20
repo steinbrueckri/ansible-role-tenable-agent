@@ -13,8 +13,38 @@ defaults:
     working-directory: "ansible-role-tenable-agent"
 
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v3.3.0
+        with:
+          path: "ansible-role-tenable-agent"
+
+      - name: 🚀 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: "pipenv"
+
+      - name: ⏬ Install OS dependencies
+        run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev
+
+      - name: ⏬ Install pipenv and dependencies
+        run: |
+          python -m pip install --upgrade pipenv wheel
+          pipenv install
+
+      - name: 🏃 Lint / Python
+        run: pipenv run flake8 *.py --ignore=E501,W503
+
+      - name: 🏃 Lint / Markdown
+        run: pipenv run pymarkdownlnt --disable-rules MD013 scan .
+
   molecule:
     name: Molecule
+    needs: lint
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -37,15 +67,15 @@ jobs:
           python-version: "3.11"
           cache: "pipenv"
 
-      - name: Install OS dependencies
+      - name: ⏬ Install OS dependencies
         run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev
 
-      - name: ⏬ Install pipenv and dependencies
+      - name: ⏬Install pipenv and dependencies
         run: |
           python -m pip install --upgrade pipenv wheel
           pipenv install
 
-      - name: Run Molecule tests.
+      - name: 🏃 Run Molecule tests.
         run: pipenv run molecule test
         env:
           PY_COLORS: "1"
