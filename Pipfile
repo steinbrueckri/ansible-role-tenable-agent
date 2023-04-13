@@ -20,4 +20,3 @@ pymarkdownlnt = "*"
 
 [requires]
 python_version = "3.11"
-python_full_version = "3.11.2"
