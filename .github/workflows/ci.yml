@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v3.5.0
+        uses: actions/checkout@v3.5.2
         with:
           path: "ansible-role-tenable-agent"
 
@@ -57,7 +57,7 @@ jobs:
 
     steps:
       - name: 🔽 Checkout
-        uses: actions/checkout@v3.5.0
+        uses: actions/checkout@v3.5.2
         with:
           path: "ansible-role-tenable-agent"
 
