@@ -24,7 +24,6 @@ INDEX_URL = "https://" + DOWNLOAD_HOST + "/downloads/nessus-agents?loginAttempte
 filename_patterns = {
     "Debian10": "NessusAgent.*debian10_amd64.deb",
     "Debian11": "NessusAgent.*debian10_amd64.deb",
-    "Ubuntu18": "NessusAgent.*ubuntu1404_amd64.deb",
     "Ubuntu20": "NessusAgent.*ubuntu1404_amd64.deb",
     "Ubuntu22": "NessusAgent.*ubuntu1404_amd64.deb",
 }
