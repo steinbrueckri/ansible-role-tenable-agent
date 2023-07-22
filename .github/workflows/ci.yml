@@ -22,25 +22,20 @@ jobs:
         with:
           path: "ansible-role-tenable-agent"
 
+      - name: 🚀 Setup Taskfile
+        uses: arduino/setup-task@v1
+
+      - name: 🔽 Install poetry
+        run: pipx install poetry
+
       - name: 🚀 Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
-          cache: "pipenv"
+          cache: "poetry"
 
-      - name: ⏬ Install OS dependencies
-        run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev
-
-      - name: ⏬ Install pipenv and dependencies
-        run: |
-          python -m pip install --upgrade pipenv wheel
-          pipenv install
-
-      - name: 🏃 Lint / Python
-        run: pipenv run flake8 *.py --ignore=E501,W503
-
-      - name: 🏃 Lint / Markdown
-        run: pipenv run pymarkdownlnt --disable-rules MD013 scan .
+      - name: 🏃 Lint
+        run: task main:lint
 
   molecule:
     name: Molecule
@@ -60,22 +55,20 @@ jobs:
         with:
           path: "ansible-role-tenable-agent"
 
+      - name: 🚀 Setup Taskfile
+        uses: arduino/setup-task@v1
+
+      - name: 🔽 Install poetry
+        run: pipx install poetry
+
       - name: 🚀 Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
-          cache: "pipenv"
-
-      - name: ⏬ Install OS dependencies
-        run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev
-
-      - name: ⏬Install pipenv and dependencies
-        run: |
-          python -m pip install --upgrade pipenv wheel
-          pipenv install
+          cache: "poetry"
 
       - name: 🏃 Run Molecule tests.
-        run: pipenv run molecule test
+        run: task molecule:test
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
