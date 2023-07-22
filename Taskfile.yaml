@@ -3,28 +3,121 @@
 
 version: "3"
 
-vars:
-  python_version: "3.11"
+################################################################################
+# Tasks
+################################################################################
+# Note: In this section are just tasks how call tasks, called main tasks
+################################################################################
 
 tasks:
   default:
     deps:
-      - install-dependencies
-      - setup-pipenv
-      - install-projects-dependencies
-  install-dependencies:
-    cmds:
-      - pip3 install --upgrade pipenv
-      - pip3 install --upgrade virtualenv
-  setup-pipenv:
+      - main:tests
+  main:lint:
+    deps:
+      - md:lint
+      - python:format
+      - python:lint
+  main:tests:
+    deps:
+      - main:lint
+      - molecule:test
+
+  ################################################################################
+  # OS
+  ################################################################################
+
+  os:install-dependencies:
+    desc: Install dependencies of the OS if running in github actions
     run: once
-    env:
-      PIPENV_VENV_IN_PROJECT: 1
     cmds:
-      - pipenv --python "{{.python_version}}"
-  install-projects-dependencies:
+      - |
+        if [ ! -z "${GITHUB_ACTIONS}" ]; then
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev
+        fi
+
+  ################################################################################
+  # Markdown
+  ################################################################################
+
+  md:lint:
+    desc: Lint Markdown files
+    deps:
+      - task: poetry:install-dependencies
     cmds:
-      - pipenv install
-  run-test:
+      - poetry run pymarkdownlnt --disable-rules MD013 scan .
+
+  ################################################################################
+  # Python
+  ################################################################################
+
+  py:install-dependencies:
+    run: once
+    desc: Install dependencies managed by pip
+    deps:
+      - task: os:install-dependencies
     cmds:
-      - pipenv run molecule test
+      - pip3 install --upgrade poetry
+
+  python:lint:
+    desc: Lint Python code
+    deps:
+      - task: poetry:install-dependencies
+    cmds:
+      - poetry run flake8 --ignore=E501,W503 --show-source *.py
+
+  python:format:
+    desc: Format Python files
+    deps:
+      - task: poetry:install-dependencies
+    cmds:
+      - poetry run black *.py
+
+  ################################################################################
+  # Poetry
+  ################################################################################
+
+  poetry:install-dependencies:
+    run: once
+    desc: Install dependencies managed by Poetry
+    deps:
+      - task: py:install-dependencies
+    cmds:
+      - poetry install
+
+  poetry:update-dependencies:
+    desc: Update all dependencies managed by Poetry to their newest versions
+    cmds:
+      - poetry update
+
+  ################################################################################
+  # Ansible / Molecule
+  ################################################################################
+
+  molecule:test:
+    desc: Run molecule tests
+    deps:
+      - task: poetry:install-dependencies
+    cmds:
+      - poetry run molecule test
+
+  ansible:galaxy:release:
+    desc: Create a new release on Ansible Galaxy
+    deps:
+      - task: poetry:install-dependencies
+    cmds:
+      - poetry run ansible-galaxy role import --api-key $GALAXY_API_KEY $(echo $REPO | cut -d/ -f1) $(echo $REPO | cut -d/ -f2)
+    requires:
+      vars: [GALAXY_API_KEY, REPO]
+
+  ################################################################################
+  # Other
+  ################################################################################
+
+  role:update-package-urls:
+    desc: Update 'vars/package_url.yaml'
+    deps:
+      - task: poetry:install-dependencies
+    cmds:
+      - poetry run ./get-package-urls.py > vars/package_url.yaml
