@@ -88,14 +88,19 @@ test = ["black", "coverage-enable-subprocess", "coverage[toml] (>=6.4.4)", "jmes
 
 [[package]]
 name = "application-properties"
-version = "0.6.0"
+version = "0.8.1"
 description = "A simple, easy to use, unified manner of accessing program properties."
 optional = false
 python-versions = ">=3.8.0"
 files = [
-    {file = "application_properties-0.6.0-py3-none-any.whl", hash = "sha256:0dd854e13dafd0de38f236ecf830b5b16637e6f47d2a651e65725988be2a8d48"},
-    {file = "application_properties-0.6.0.tar.gz", hash = "sha256:bd5f8440cd25d2966a585d14c61a0144f70dcc3518bd25a8980a90e01f45cc31"},
+    {file = "application_properties-0.8.1-py3-none-any.whl", hash = "sha256:f442e403ab7c8f97b048cf0ab92845057d595989653f65ced48579ad7cf35607"},
+    {file = "application_properties-0.8.1.tar.gz", hash = "sha256:101667125383940651e72a2a9b3aa32225f359050c3be45b4ef4b51009930bb4"},
 ]
+
+[package.dependencies]
+pyyaml = ">=6.0"
+tomli = ">=2.0.1"
+typing-extensions = ">=4.5.0"
 
 [[package]]
 name = "arrow"
@@ -814,7 +819,7 @@ test = ["ansi2html (>=1.8.0)", "ansible-lint (>=6.12.1)", "check-jsonschema", "c
 
 [[package]]
 name = "molecule-hetznercloud"
-version = "1.3.1.dev4+gdc8d892"
+version = "1.3.1.dev4+gf4da862"
 description = "Molecule Hetzner Cloud Plugin :: run molecule tests with hetzner cloud"
 optional = false
 python-versions = ">=3.6"
@@ -822,19 +827,19 @@ files = []
 develop = false
 
 [package.dependencies]
-ansible-compat = ">=0.5.0"
+ansible-compat = ">=4.1.5"
 hcloud = ">=1.10.0"
 molecule = ">=3.2.1"
 pyyaml = ">=5.3.1"
 
 [package.extras]
-test = ["hcloud (>=1.10.0,<2)", "mock (>=4.0.2,<5)", "pytest (>=6.2.1,<7)", "pytest-cov (>=2.10.1,<3)", "pytest-helpers-namespace (>=2019.1.8,<2020)", "pytest-mock (>=3.5.0,<4)", "pytest-verbose-parametrize (>=1.7.0,<2)", "pytest-xdist (>=2.2.0,<3)"]
+test = ["hcloud (>=1.10.0,<2)", "mock (>=4.0.2,<5)", "pytest (>=6.2.1,<7)", "pytest-cov (>=2.10.1,<3)", "pytest-helpers-namespace (>=2019.1.8,<2020)", "pytest-mock (>=3.5.0,<4)", "pytest-xdist (>=2.2.0,<3)"]
 
 [package.source]
 type = "git"
 url = "https://github.com/steinbrueckri/molecule-hetznercloud.git"
-reference = "makeitgreatagain"
-resolved_reference = "dc8d8924b69da6caab826e0efef2782ac71ac1a4"
+reference = "main"
+resolved_reference = "f4da862f08d094390dc7a84b2bd3dace8cd8e153"
 
 [[package]]
 name = "mypy-extensions"
@@ -958,19 +963,19 @@ plugins = ["importlib-metadata"]
 
 [[package]]
 name = "pymarkdownlnt"
-version = "0.9.11"
+version = "0.9.12"
 description = "A GitHub Flavored Markdown compliant Markdown linter."
 optional = false
 python-versions = ">=3.8.0"
 files = [
-    {file = "pymarkdownlnt-0.9.11-py3-none-any.whl", hash = "sha256:a4818b3aab09072eac4c081b0f73e1ec688faac1c1387bdc8821fede22ba39b4"},
-    {file = "pymarkdownlnt-0.9.11.tar.gz", hash = "sha256:0e659878043dff7b3dea9a6dfb618a8c3ae0aa6fcddbf62054d00adbfa53ec7f"},
+    {file = "pymarkdownlnt-0.9.12-py3-none-any.whl", hash = "sha256:4d0b4af6a533f77a3a7e0ac4c3413bfab68b250a6fc94765316c21d277872d9f"},
+    {file = "pymarkdownlnt-0.9.12.tar.gz", hash = "sha256:55057595ce872d0a3cc4947b8060382c47a6a91572fc62e12ecfdd2c31bba764"},
 ]
 
 [package.dependencies]
-application-properties = "0.6.0"
-Columnar = "1.4.1"
-typing-extensions = "4.5.0"
+application-properties = ">=0.8.1"
+columnar = ">=1.4.0"
+typing-extensions = ">=4.7.0"
 
 [[package]]
 name = "python-dateutil"
@@ -1357,6 +1362,17 @@ files = [
 ]
 
 [[package]]
+name = "tomli"
+version = "2.0.1"
+description = "A lil' TOML parser"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},
+    {file = "tomli-2.0.1.tar.gz", hash = "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"},
+]
+
+[[package]]
 name = "toolz"
 version = "0.12.0"
 description = "List processing tools and functional utilities"
@@ -1369,13 +1385,13 @@ files = [
 
 [[package]]
 name = "typing-extensions"
-version = "4.5.0"
+version = "4.7.1"
 description = "Backported and Experimental Type Hints for Python 3.7+"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "typing_extensions-4.5.0-py3-none-any.whl", hash = "sha256:fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4"},
-    {file = "typing_extensions-4.5.0.tar.gz", hash = "sha256:5cb5f4a79139d699607b3ef622a1dedafa84e115ab0024e0d9c044a9479ca7cb"},
+    {file = "typing_extensions-4.7.1-py3-none-any.whl", hash = "sha256:440d5dd3af93b060174bf433bccd69b0babc3b15b1a8dca43789fd7f61514b36"},
+    {file = "typing_extensions-4.7.1.tar.gz", hash = "sha256:b75ddc264f0ba5615db7ba217daeb99701ad295353c45f9e95963337ceeeffb2"},
 ]
 
 [[package]]
@@ -1441,4 +1457,4 @@ dev = ["doc8", "flake8", "flake8-import-order", "rstcheck[sphinx]", "sphinx"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "e36a28e9acc22b74be490b4ba9de6d769491f28828556bef7d4c3ca226a2ac09"
+content-hash = "f63ccd6ccd96e3f5d700284422d692ceef758756bbbcc362b9302a8a1e8852ea"

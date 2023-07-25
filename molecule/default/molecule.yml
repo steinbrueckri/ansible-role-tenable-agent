@@ -2,7 +2,7 @@
 dependency:
   name: galaxy
 driver:
-  name: hetznercloud
+  name: molecule_hetznercloud
 platforms:
   - name: "ansible-role-tenable-agent-instance-${USER:-noname}-${MOLECULE_DISTRO:-debian-11}"
     server_type: cx11

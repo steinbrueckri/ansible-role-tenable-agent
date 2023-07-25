@@ -11,7 +11,7 @@ bs4 = "^0.0.1"
 ansible-lint = { version = "^6.17.2", markers = "platform_system != 'Windows'" }
 flake8 = "^6.0.0"
 setuptools = "^68.0.0"
-molecule-hetznercloud = {git = "https://github.com/steinbrueckri/molecule-hetznercloud.git", rev = "makeitgreatagain"}
+molecule-hetznercloud = {git = "https://github.com/steinbrueckri/molecule-hetznercloud.git", rev = "main"}
 pymarkdownlnt = "^0.9.11"
 hcloud = "^1.26.0"
 molecule = "^5.1.0"
