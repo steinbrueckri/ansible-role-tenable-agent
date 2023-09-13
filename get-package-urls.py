@@ -28,7 +28,7 @@ filename_patterns = {
     "Ubuntu22": "NessusAgent.*ubuntu1404_amd64.deb",
 }
 
-print("Downloading index page", file=sys.stderr)
+print(f"Downloading index page {INDEX_URL}", file=sys.stderr)
 conn = http.client.HTTPSConnection(DOWNLOAD_HOST)
 conn.request("GET", INDEX_URL)
 resp = conn.getresponse()
@@ -51,6 +51,8 @@ packages = {}
 
 for os, pattern in filename_patterns.items():
     for dl in downloads:
+        if not dl.get("meta_data", {}).get("md5"):
+            continue
         dl_id = dl["id"]
         dl_filename = dl["file"]
         dl_checksum = dl["meta_data"]["md5"]
