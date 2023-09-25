@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: 🔽 Checkout
-        uses: actions/checkout@v4.0.0
+        uses: actions/checkout@v4.1.0
 
       - name: 🚀 Setup Taskfile
         uses: arduino/setup-task@v1
