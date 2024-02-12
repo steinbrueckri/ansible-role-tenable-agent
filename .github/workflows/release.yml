@@ -15,7 +15,7 @@ jobs:
           path: "ansible-role-tenable-agent"
 
       - name: 🚀 Setup Taskfile
-        uses: arduino/setup-task@v1
+        uses: arduino/setup-task@v2
 
       - name: 🔽 Install poetry
         run: pipx install poetry
