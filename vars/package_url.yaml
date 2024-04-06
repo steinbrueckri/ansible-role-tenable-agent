@@ -1,12 +1,12 @@
 ---
 package_url:
-  Debian10: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/22610/download?i_agree_to_tenable_license_agreement=true
-  Debian11: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/22610/download?i_agree_to_tenable_license_agreement=true
-  Ubuntu20: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/22622/download?i_agree_to_tenable_license_agreement=true
-  Ubuntu22: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/22622/download?i_agree_to_tenable_license_agreement=true
+  Debian10: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/22700/download?i_agree_to_tenable_license_agreement=true
+  Debian11: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/22700/download?i_agree_to_tenable_license_agreement=true
+  Ubuntu20: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/22712/download?i_agree_to_tenable_license_agreement=true
+  Ubuntu22: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/22712/download?i_agree_to_tenable_license_agreement=true
 
 package_checksum:
-  Debian10: md5:e9216373ce5e712dd7bf6aa4c4d07fb0
-  Debian11: md5:e9216373ce5e712dd7bf6aa4c4d07fb0
-  Ubuntu20: md5:61ee5620460e010a05f32567b5a6218b
-  Ubuntu22: md5:61ee5620460e010a05f32567b5a6218b
+  Debian10: md5:405afc0ddb91b159f2a94ae32cf06493
+  Debian11: md5:405afc0ddb91b159f2a94ae32cf06493
+  Ubuntu20: md5:fe9b44c351bc026609158cca3e44f11c
+  Ubuntu22: md5:fe9b44c351bc026609158cca3e44f11c
