@@ -44,9 +44,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - distro: ubuntu-20.04
           - distro: ubuntu-22.04
-          - distro: debian-10
           - distro: debian-11
 
     steps:
