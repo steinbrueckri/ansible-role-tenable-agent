@@ -1,8 +1,8 @@
 ---
 package_url:
-  Debian10: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/23549/download?i_agree_to_tenable_license_agreement=true
-  Debian11: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/23549/download?i_agree_to_tenable_license_agreement=true
+  Debian10: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/23574/download?i_agree_to_tenable_license_agreement=true
+  Debian11: https://www.tenable.com/downloads/api/v1/public/pages/nessus-agents/downloads/23574/download?i_agree_to_tenable_license_agreement=true
 
 package_checksum:
-  Debian10: md5:59c29b185321d997e2186e97ccfed5e2
-  Debian11: md5:59c29b185321d997e2186e97ccfed5e2
+  Debian10: md5:0f66b041d04ab365b1ef41fc21027db6
+  Debian11: md5:0f66b041d04ab365b1ef41fc21027db6
