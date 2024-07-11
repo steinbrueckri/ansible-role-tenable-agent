@@ -42,6 +42,7 @@ jobs:
     needs: lint
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         include:
           - distro: ubuntu-22.04
