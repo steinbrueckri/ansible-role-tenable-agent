@@ -7,11 +7,12 @@
 #
 #   $ get-package-urls.py >vars/package_url.yaml
 
-import bs4
 import http.client
 import json
 import re
 import sys
+
+import bs4
 
 DOWNLOAD_HOST = "www.tenable.com"
 DOWNLOAD_URL = (
@@ -24,8 +25,11 @@ INDEX_URL = "https://" + DOWNLOAD_HOST + "/downloads/nessus-agents?loginAttempte
 filename_patterns = {
     "Debian10": "NessusAgent.*debian10_amd64.deb",
     "Debian11": "NessusAgent.*debian10_amd64.deb",
-    "Ubuntu20": "NessusAgent.*ubuntu1404_amd64.deb",
-    "Ubuntu22": "NessusAgent.*ubuntu1404_amd64.deb",
+    "Ubuntu16": "NessusAgent.*ubuntu1604_amd64.deb",
+    "Ubuntu18": "NessusAgent.*ubuntu1604_amd64.deb",
+    "Ubuntu20": "NessusAgent.*ubuntu1604_amd64.deb",
+    "Ubuntu22": "NessusAgent.*ubuntu1604_amd64.deb",
+    "Ubuntu24": "NessusAgent.*ubuntu1604_amd64.deb",
 }
 
 print(f"Downloading index page {INDEX_URL}", file=sys.stderr)

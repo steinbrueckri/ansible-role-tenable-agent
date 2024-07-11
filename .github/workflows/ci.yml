@@ -45,6 +45,7 @@ jobs:
       matrix:
         include:
           - distro: ubuntu-22.04
+          - distro: ubuntu-24.04
           - distro: debian-11
 
     steps:
