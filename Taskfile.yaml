@@ -46,7 +46,7 @@ tasks:
     deps:
       - task: poetry:install-dependencies
     cmds:
-      - poetry run pymarkdownlnt --disable-rules MD013 scan .
+      - ~/.local/bin/poetry run pymarkdownlnt --disable-rules MD013 scan .
 
   ################################################################################
   # Python
@@ -54,25 +54,26 @@ tasks:
 
   py:install-dependencies:
     run: once
-    desc: Install dependencies managed by pip
+    desc: Installs Poetry package manager if not already installed.
     deps:
       - task: os:install-dependencies
     cmds:
       - curl -sSL https://install.python-poetry.org | python3 -
+      - ~/.local/bin/poetry --version
 
   python:lint:
     desc: Lint Python code
     deps:
       - task: poetry:install-dependencies
     cmds:
-      - poetry run flake8 --ignore=E501,W503 --show-source *.py
+      - ~/.local/bin/poetry run flake8 --ignore=E501,W503 --show-source *.py
 
   python:format:
     desc: Format Python files
     deps:
       - task: poetry:install-dependencies
     cmds:
-      - poetry run black *.py
+      - ~/.local/bin/poetry run black *.py
 
   ################################################################################
   # Poetry
@@ -84,12 +85,12 @@ tasks:
     deps:
       - task: py:install-dependencies
     cmds:
-      - poetry install
+      - ~/.local/bin/poetry install
 
   poetry:update-dependencies:
     desc: Update all dependencies managed by Poetry to their newest versions
     cmds:
-      - poetry update
+      - ~/.local/bin/poetry update
 
   ################################################################################
   # Ansible / Molecule
@@ -100,14 +101,14 @@ tasks:
     deps:
       - task: poetry:install-dependencies
     cmds:
-      - poetry run molecule test
+      - ~/.local/bin/poetry run molecule test
 
   ansible:galaxy:release:
     desc: Create a new release on Ansible Galaxy
     deps:
       - task: poetry:install-dependencies
     cmds:
-      - poetry run ansible-galaxy role import --api-key $GALAXY_API_KEY $(echo $REPO | cut -d/ -f1) $(echo $REPO | cut -d/ -f2)
+      - ~/.local/bin/poetry run ansible-galaxy role import --api-key $GALAXY_API_KEY $(echo $REPO | cut -d/ -f1) $(echo $REPO | cut -d/ -f2)
     requires:
       vars: [GALAXY_API_KEY, REPO]
 
@@ -120,4 +121,4 @@ tasks:
     deps:
       - task: poetry:install-dependencies
     cmds:
-      - poetry run ./get-package-urls.py > vars/package_url.yaml
+       - ~/.local/bin/poetry run ./get-package-urls.py > vars/package_url.yaml
