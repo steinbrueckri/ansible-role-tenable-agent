@@ -4,7 +4,6 @@ queue_rules:
       - author=dependabot[bot]
       - base=main
       - check-success~=^Molecule/
-    method: merge
 
 pull_request_rules:
   - name: Automatic merge on approval
@@ -13,6 +12,7 @@ pull_request_rules:
     actions:
       merge:
         method: merge
+
   - name: automatic merge of bot 🤖 (Update package url)
     conditions:
       - base=main
@@ -21,7 +21,13 @@ pull_request_rules:
     actions:
       merge:
         method: merge
+
   - name: refactored queue action rule
-    conditions: []
+    conditions:
+      - author=dependabot[bot]
+      - base=main
+      - check-success~=^Molecule/
     actions:
       queue:
+        name: default
+        method: merge
