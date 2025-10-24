@@ -87,6 +87,9 @@ tasks:
       - task: uv:install-dependencies
     cmds:
       - uv run molecule test
+    env:
+      HCLOUD_TOKEN:
+        sh: "[[ -z $HCLOUD_TOKEN ]] && op --account pixel-combo.1password.com item get yvgxtaa6cptielkwjqispregdu --fields password --reveal || echo ${HCLOUD_TOKEN}"
 
   ansible:galaxy:release:
     desc: Create a new release on Ansible Galaxy
