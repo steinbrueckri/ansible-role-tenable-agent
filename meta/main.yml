@@ -1,8 +1,9 @@
 ---
 dependencies: []
 galaxy_info:
-  role_name: ansible_role_tenable_agent
+  role_name: tenable_agent
   author: steinbrueckri
+  namespace: steinbrueckri
   license: Apache
   description: Ansible role to install Nessus agent (Tenable agent).
 

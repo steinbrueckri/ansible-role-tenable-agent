@@ -15,4 +15,4 @@
         - 10.0.0.0/24
 
   roles:
-    - ansible-role-tenable-agent
+    - steinbrueckri.tenable_agent
