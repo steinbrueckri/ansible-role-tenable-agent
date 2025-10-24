@@ -1,0 +1,52 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: true
+  become: true
+
+  vars:
+    nessus_install_dir: /opt/nessus_agent/
+    nessus_agent_path: /opt/nessus_agent/sbin/nessuscli
+    nessus_agent_service_name: nessusagent
+
+  tasks:
+    - name: Gather package facts
+      ansible.builtin.package_facts:
+        manager: auto
+
+    - name: Assert Nessus Agent package is installed
+      ansible.builtin.assert:
+        that:
+          - "'nessusagent' in ansible_facts.packages"
+        fail_msg: "Nessus Agent package is not installed"
+        success_msg: "Nessus Agent package is installed"
+
+    - name: Verify Nessus Agent installation directory exists
+      ansible.builtin.stat:
+        path: "{{ nessus_install_dir }}"
+      register: install_dir_stat
+      failed_when: not install_dir_stat.stat.exists or not install_dir_stat.stat.isdir
+
+    - name: Verify nessuscli binary exists
+      ansible.builtin.stat:
+        path: "{{ nessus_agent_path }}"
+      register: nessuscli_stat
+      failed_when: not nessuscli_stat.stat.exists or not nessuscli_stat.stat.executable
+
+    - name: Gather service facts
+      ansible.builtin.service_facts:
+
+    - name: Verify Nessus Agent service is running
+      ansible.builtin.assert:
+        that:
+          - "ansible_facts.services[nessus_agent_service_name + '.service'] is defined"
+          - "ansible_facts.services[nessus_agent_service_name + '.service'].state == 'running'"
+        fail_msg: "Nessus Agent service is not running"
+        success_msg: "Nessus Agent service is running"
+
+    - name: Verify Nessus Agent service is enabled
+      ansible.builtin.assert:
+        that:
+          - "ansible_facts.services[nessus_agent_service_name + '.service'].status == 'enabled'"
+        fail_msg: "Nessus Agent service is not enabled"
+        success_msg: "Nessus Agent service is enabled"
