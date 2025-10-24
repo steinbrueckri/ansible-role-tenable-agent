@@ -8,7 +8,7 @@ dependencies = [
     "ansible-lint>=6.17.2; platform_system != 'Windows'",
     "ruff>=0.8.0",
     "setuptools>=68.0.0",
-    "molecule-hetznercloud @ git+https://github.com/steinbrueckri/molecule-hetznercloud.git@main",
+    "molecule-hetznercloud>=2.5.0",
     "pymarkdownlnt>=0.9.11",
     "hcloud>=1.26.0",
     "molecule>=5.1.0",
