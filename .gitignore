@@ -8,3 +8,7 @@ secrets.yml
 .kitchen.local.yml
 Dockerfile
 *.cache
+
+# uv
+.venv/
+.python-version

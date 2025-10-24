@@ -25,14 +25,8 @@ jobs:
       - name: 🚀 Setup Taskfile
         uses: arduino/setup-task@v2
 
-      - name: 🔽 Install poetry
-        run: pipx install poetry
-
-      - name: 🚀 Setup Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.11"
-          cache: "poetry"
+      - name: 🔽 Install uv
+        uses: astral-sh/setup-uv@v5
 
       - name: 🏃 Lint
         run: task main:lint
@@ -58,14 +52,8 @@ jobs:
       - name: 🚀 Setup Taskfile
         uses: arduino/setup-task@v2
 
-      - name: 🔽 Install poetry
-        run: pipx install poetry
-
-      - name: 🚀 Setup Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.11"
-          cache: "poetry"
+      - name: 🔽 Install uv
+        uses: astral-sh/setup-uv@v5
 
       - name: 🏃 Run Molecule tests.
         run: task molecule:test

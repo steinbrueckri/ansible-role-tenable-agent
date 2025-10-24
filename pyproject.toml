@@ -1,26 +1,25 @@
-[tool.poetry]
+[project]
 name = "ansible-role-tenable-agent"
 version = "0.1.0"
 description = ""
-authors = ["Richard Steinbrueck <richard.steinbrueck@googlemail.com>"]
-readme = "README.md"
-package-mode = false
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "bs4>=0.0.1",
+    "ansible-lint>=6.17.2; platform_system != 'Windows'",
+    "ruff>=0.8.0",
+    "setuptools>=68.0.0",
+    "molecule-hetznercloud @ git+https://github.com/steinbrueckri/molecule-hetznercloud.git@main",
+    "pymarkdownlnt>=0.9.11",
+    "hcloud>=1.26.0",
+    "molecule>=5.1.0",
+    "ansible>=8.2.0",
+    "yamllint>=1.32.0",
+    "http-client>=0.1.22",
+]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-bs4 = "^0.0.1"
-ansible-lint = { version = "^6.17.2", markers = "platform_system != 'Windows'" }
-flake8 = "^6.0.0"
-setuptools = "^68.0.0"
-molecule-hetznercloud = {git = "https://github.com/steinbrueckri/molecule-hetznercloud.git", rev = "main"}
-pymarkdownlnt = "^0.9.11"
-hcloud = "^1.26.0"
-molecule = "^5.1.0"
-ansible = "^8.2.0"
-yamllint = "^1.32.0"
-http-client = "^0.1.22"
-black = "^23.7.0"
+[tool.ruff]
+line-length = 88
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.ruff.lint]
+# Ignore line length (E501)
+ignore = ["E501"]

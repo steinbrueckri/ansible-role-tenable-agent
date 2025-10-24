@@ -1,12 +1,8 @@
 ---
-# https://taskfile.dev
-
 version: "3"
 
 ################################################################################
 # Tasks
-################################################################################
-# Note: In this section are just tasks how call tasks, called main tasks
 ################################################################################
 
 tasks:
@@ -44,53 +40,42 @@ tasks:
   md:lint:
     desc: Lint Markdown files
     deps:
-      - task: poetry:install-dependencies
+      - task: uv:install-dependencies
     cmds:
-      - ~/.local/bin/poetry run pymarkdownlnt --disable-rules MD013 scan .
+      - uv run pymarkdownlnt --disable-rules MD013 scan .
 
   ################################################################################
   # Python
   ################################################################################
 
-  py:install-dependencies:
-    run: once
-    desc: Installs Poetry package manager if not already installed.
-    deps:
-      - task: os:install-dependencies
-    cmds:
-      - curl -sSL https://install.python-poetry.org | python3 -
-      - ~/.local/bin/poetry --version
-
   python:lint:
     desc: Lint Python code
     deps:
-      - task: poetry:install-dependencies
+      - task: uv:install-dependencies
     cmds:
-      - ~/.local/bin/poetry run flake8 --ignore=E501,W503 --show-source *.py
+      - uv run ruff check *.py
 
   python:format:
     desc: Format Python files
     deps:
-      - task: poetry:install-dependencies
+      - task: uv:install-dependencies
     cmds:
-      - ~/.local/bin/poetry run black *.py
+      - uv run ruff format *.py
 
   ################################################################################
-  # Poetry
+  # uv
   ################################################################################
 
-  poetry:install-dependencies:
+  uv:install-dependencies:
     run: once
-    desc: Install dependencies managed by Poetry
-    deps:
-      - task: py:install-dependencies
+    desc: Install dependencies managed by uv
     cmds:
-      - ~/.local/bin/poetry install
+      - uv sync
 
-  poetry:update-dependencies:
-    desc: Update all dependencies managed by Poetry to their newest versions
+  uv:update-dependencies:
+    desc: Update all dependencies managed by uv to their newest versions
     cmds:
-      - ~/.local/bin/poetry update
+      - uv lock --upgrade
 
   ################################################################################
   # Ansible / Molecule
@@ -99,16 +84,16 @@ tasks:
   molecule:test:
     desc: Run molecule tests
     deps:
-      - task: poetry:install-dependencies
+      - task: uv:install-dependencies
     cmds:
-      - ~/.local/bin/poetry run molecule test
+      - uv run molecule test
 
   ansible:galaxy:release:
     desc: Create a new release on Ansible Galaxy
     deps:
-      - task: poetry:install-dependencies
+      - task: uv:install-dependencies
     cmds:
-      - ~/.local/bin/poetry run ansible-galaxy role import --api-key $GALAXY_API_KEY $(echo $REPO | cut -d/ -f1) $(echo $REPO | cut -d/ -f2)
+      - uv run ansible-galaxy role import --api-key $GALAXY_API_KEY $(echo $REPO | cut -d/ -f1) $(echo $REPO | cut -d/ -f2)
     requires:
       vars: [GALAXY_API_KEY, REPO]
 
@@ -119,6 +104,6 @@ tasks:
   role:update-package-urls:
     desc: Update 'vars/package_url.yaml'
     deps:
-      - task: poetry:install-dependencies
+      - task: uv:install-dependencies
     cmds:
-       - ~/.local/bin/poetry run ./get-package-urls.py > vars/package_url.yaml
+       - uv run ./get-package-urls.py > vars/package_url.yaml
