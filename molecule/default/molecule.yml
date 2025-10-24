@@ -9,11 +9,3 @@ platforms:
     image: ${MOLECULE_DISTRO:-debian-11}
 provisioner:
   name: ansible
-  config_options:
-    defaults:
-      deprecation_warnings: false
-lint: |
-  pipenv run yamllint .
-  # See https://github.com/ansible-community/ansible-lint/issues/1329
-  # Exclude molecule/default/ because of this issue
-  pipenv run ansible-lint --exclude=molecule/default/
