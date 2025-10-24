@@ -4,7 +4,7 @@ dependency:
 driver:
   name: molecule_hetznercloud
 platforms:
-  - name: "tenable-agent-${USER:-noname}-${MOLECULE_DISTRO:-debian-11}"
+  - name: "tenable-agent"
     server_type: cx23
     image: ${MOLECULE_DISTRO:-debian-11}
 provisioner:
