@@ -18,7 +18,7 @@ jobs:
         uses: arduino/setup-task@v2
 
       - name: 🔽 Install uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v7
 
       - name: 🌌 Trigger a new import to Galaxy
         run: task ansible:galaxy:release
