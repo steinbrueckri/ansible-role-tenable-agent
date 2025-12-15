@@ -86,7 +86,10 @@ tasks:
     deps:
       - task: uv:install-dependencies
     cmds:
-      - uv run molecule test
+      - for:
+          matrix:
+            DISTRO: ["debian-11", "ubuntu-22.04", "ubuntu-22.04"]
+        cmd: MOLECULE_DISTRO={{.ITEM.DISTRO }} uv run molecule test
     env:
       HCLOUD_TOKEN:
         sh: "[[ -z $HCLOUD_TOKEN ]] && op --account pixel-combo.1password.com item get yvgxtaa6cptielkwjqispregdu --fields password --reveal || echo ${HCLOUD_TOKEN}"
@@ -109,4 +112,4 @@ tasks:
     deps:
       - task: uv:install-dependencies
     cmds:
-       - uv run ./get-package-urls.py > vars/package_url.yaml
+      - uv run ./get-package-urls.py > vars/package_url.yaml
